@@ -1,0 +1,20 @@
+Option Explicit
+Sub stock_market_analysis()
+    Dim Ticker As String
+    Dim Ticker_Total As Currency
+    Dim int_Summary_Table_Row As Currency
+    int_Summary_Table_Row = 2
+    Dim int_row As Currency
+        For int_row = 2 To 760192
+            If Cells(int_row + 1, 1).Value <> Cells(int_row, 1).Value Then
+                Ticker = Cells(int_row, 1).Value
+                Ticker_Total = Ticker_Total + Cells(int_row, 7).Value
+                Range("J" & int_Summary_Table_Row).Value = Ticker
+                Range("K" & int_Summary_Table_Row).Value = Ticker_Total
+                int_Summary_Table_Row = int_Summary_Table_Row + 1
+                Ticker_Total = 0
+            Else
+                Ticker_Total = Ticker_Total + Cells(int_row, 7).Value
+            End If
+        Next int_row
+End Sub
